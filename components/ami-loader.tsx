@@ -4,6 +4,10 @@ import { useEffect } from 'react';
 
 export const AmiLoader = () => {
   useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      return;
+    }
+
     const amiScriptElementId = '__ami__';
     const devPollIntervalMs = 1_000;
     let intervalId: number | undefined;
