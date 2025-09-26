@@ -1,8 +1,6 @@
-import { NextResponse } from 'next/server';
 import { readFile } from 'node:fs/promises';
 
-const BUNDLE_PATH =
-  '/Users/aidenybai/Projects/toolbar/packages/toolbar/dist/index.global.js';
+const BUNDLE_PATH = process.env.BUNDLE_PATH as string;
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -27,7 +25,7 @@ export async function GET() {
       return new Response('Not Found', { status: 404 });
     }
 
-    console.error('Failed to load toolbar bundle', error);
-    return new NextResponse('Internal Server Error', { status: 500 });
+    console.error('Failed to load library bundle', error);
+    return new Response('Internal Server Error', { status: 500 });
   }
 }
