@@ -9,7 +9,7 @@ export async function GET() {
   try {
     const file = await readFile(BUNDLE_PATH);
 
-    return new Response(file, {
+    return new Response(file.toString('utf8'), {
       headers: {
         'Content-Type': 'application/javascript',
         'Cache-Control': 'no-store, no-cache, must-revalidate',

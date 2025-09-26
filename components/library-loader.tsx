@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 export const LibraryLoader = () => {
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV !== 'development') {
       return;
     }
 
@@ -62,11 +62,9 @@ export const LibraryLoader = () => {
 
     appendLibraryScript();
 
-    if (process.env.NODE_ENV === 'development') {
-      intervalId = window.setInterval(() => {
-        appendLibraryScript();
-      }, devPollIntervalMs);
-    }
+    intervalId = window.setInterval(() => {
+      appendLibraryScript();
+    }, devPollIntervalMs);
 
     return () => {
       isCancelled = true;
